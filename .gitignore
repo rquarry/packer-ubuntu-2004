@@ -1,1 +1,3 @@
 packer_cache/
+vagrant_id.rsa
+vagrant_id.rsa.pub

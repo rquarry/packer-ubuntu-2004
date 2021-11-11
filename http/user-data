@@ -1,18 +1,18 @@
-#cloud-config
+#cloud-Config
 autoinstall:
   version: 1
   early-commands:
     - systemctl stop ssh
   identity:
     hostname: ubuntu-server
-    password: '$6$wdAcoXrU039hKYPd$508Qvbe7ObUnxoj15DRCkzC3qO7edjH0VV7BPNRDYK4QR8ofJaEEF2heacn0QgD.f8pO8SNp83XNdWG6tocBM1'
+    password: "$6$exDY1mhS4KUYCE/2$zmn9ToZwTKLhCw.b4/b.ZRTIZM30JZ4QrOQ2aOXJ8yk96xpcCof0kxKwuX1kqLG/ygbJ1f8wxED22bTL4F46P0"
     username: ubuntu
-  network:
-    network:
-      version: 2
-      ethernets:
-        ens33: {dhcp4: true, dhcp-identifier: mac}
   ssh:
     install-server: true
+    authorized-keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC+60kaibJ/UWeTCo8HEvF2P9Xet27mhC+9LoVfekFGyXEHS6wE83ZsmVgx+5AHvm23RdkbAcZE+Ey7RzbBB8qY2bbJfoE9BOsLWGgeEsbb14LkrGvKuoR1DNwDIA+pXk6jL2I9yidU/PyA9WERNIJ2koZxkik6jjaSILWR9dXJF8J/E4KxMRC+k4JzNQIeODXY2Q2bGytzZTMD2hakXENtcyFQ+jXmxwwyKR+ulLvbte1avtoIRer5eBm5Q9ks8ermXXncZTED40mwBXmd9aCGIzRIWVhQO80gRBX/RSLA9rlpCWc2nKOAKU/a6eLxasWIh5WqLlPccHWTIJArBAC/uX/KXVWaJ16yOJ1NzoPXoHf2zKWdDZhglQf2eKzkMiH+sw/rAAqQWDzgr2E86iIyAQXwhLuwlLbsAOLhlqDhkbR5HzvGSE2k0sJwmoTm4S5J7ThBHgHqbPzyzJUUrdm8aauFnvTdmtAeTLNFWKJpQqZOs+MLGVnxdxJJPj4WyHNUcD/X4llK/uffCeNKKjLqExIU9zOt8sJNu4PvRLOUu3LPKt/92KjOhDhxRw3TLC6JD3hvLL/Maw3pT/RbfvxeAWdfNbLiqUDJUfWqp0UNb+DfdI8Sp1x0R20R6v/POYygJcCaxJSBnrKlzL7M6cu2XhRa6X4NlP26PF65NIvjgQ== exmail\rtquarry@DESKTOP-8VBMC76"
+    allow-pw: true
+  packages:
+    - open-vm-tools
   late-commands:
-    - sed -i 's/^#*\(send dhcp-client-identifier\).*$/\1 = hardware;/' /target/etc/dhcp/dhclient.conf
+    - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
